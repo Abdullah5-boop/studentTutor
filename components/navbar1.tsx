@@ -65,67 +65,18 @@ const Navbar1 = ({
     title: "Shadcnblocks.com",
   },
   menu = [
-    { title: "Home", url: "#" },
+    { title: "Home", url: "#",   
+ 
+     },
     {
       title: "Products",
       url: "#",
-      items: [
-        {
-          title: "Blog",
-          description: "The latest industry news, updates, and info",
-          icon: <Book className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Company",
-          description: "Our mission is to innovate and empower the world",
-          icon: <Trees className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Careers",
-          description: "Browse job listing and discover our workspace",
-          icon: <Sunset className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Support",
-          description:
-            "Get in touch with our support team or visit our community forums",
-          icon: <Zap className="size-5 shrink-0" />,
-          url: "#",
-        },
-      ],
+   
     },
     {
       title: "Resources",
       url: "#",
-      items: [
-        {
-          title: "Help Center",
-          description: "Get all the answers you need right here",
-          icon: <Zap className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Contact Us",
-          description: "We are here to help you with any questions you have",
-          icon: <Sunset className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Status",
-          description: "Check the current status of our services and APIs",
-          icon: <Trees className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Terms of Service",
-          description: "Our terms and conditions for using our services",
-          icon: <Book className="size-5 shrink-0" />,
-          url: "#",
-        },
-      ],
+   
     },
     {
       title: "Pricing",
@@ -136,6 +87,82 @@ const Navbar1 = ({
       url: "#",
     },
   ],
+  // menu = [
+  //   { title: "Home", url: "#",   items: [
+  //       {
+  //         title: "Blog",
+  //         description: "The latest industry news, updates, and info",
+  //         icon: <Book className="size-5 shrink-0" />,
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Company",
+  //         description: "Our mission is to innovate and empower the world",
+  //         icon: <Trees className="size-5 shrink-0" />,
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Careers",
+  //         description: "Browse job listing and discover our workspace",
+  //         icon: <Sunset className="size-5 shrink-0" />,
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Support",
+  //         description:
+  //           "Get in touch with our support team or visit our community forums",
+  //         icon: <Zap className="size-5 shrink-0" />,
+  //         url: "#",
+  //       },
+  //     ], },
+  //   {
+  //     title: "Products",
+  //     url: "#",
+   
+  //   },
+  //   {
+  //     title: "Resources",
+  //     url: "#",
+  //     items: [
+  //       {
+  //         title: "Help Center",
+  //         description: "Get all the answers you need right here",
+  //         icon: <Zap className="size-5 shrink-0" />,
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Contact Us",
+  //         description: "We are here to help you with any questions you have",
+  //         icon: <Sunset className="size-5 shrink-0" />,
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Status",
+  //         description: "Check the current status of our services and APIs",
+  //         icon: <Trees className="size-5 shrink-0" />,
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Terms of Service",
+  //         description: "Our terms and conditions for using our services",
+  //         icon: <Book className="size-5 shrink-0" />,
+  //         url: "#",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Pricing",
+  //     url: "#",
+  //   },
+  //   {
+  //     title: "Blog",
+  //     url: "#",
+  //   },
+  // ],
+
+
+
+
   auth = {
     login: { title: "Login", url: "#" },
     signup: { title: "Sign up", url: "#" },
@@ -144,7 +171,8 @@ const Navbar1 = ({
 }: Navbar1Props) => {
   return (
     <section className={cn("py-4", className)}>
-      <div className=" w-screen">
+      {/* container */}
+      <div className=" w-screen px-4"> 
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
