@@ -3,7 +3,7 @@
 import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-
+import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
@@ -68,23 +68,10 @@ const Navbar1 = ({
     { title: "Home", url: "#",   
  
      },
+    
     {
-      title: "Products",
-      url: "#",
-   
-    },
-    {
-      title: "Resources",
-      url: "#",
-   
-    },
-    {
-      title: "Pricing",
-      url: "#",
-    },
-    {
-      title: "Blog",
-      url: "#",
+      title: "Dashboard",
+      url: "/Com/Dashboard",
     },
   ],
   // menu = [
@@ -164,8 +151,8 @@ const Navbar1 = ({
 
 
   auth = {
-    login: { title: "Login", url: "#" },
-    signup: { title: "Sign up", url: "#" },
+    login: { title: "Login", url: "/Com/Login" },
+    signup: { title: "Sign up", url: "/Com/Signup" },
   },
   className,
 }: Navbar1Props) => {
@@ -243,14 +230,19 @@ const Navbar1 = ({
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
 
-                  <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
-                    </Button>
-                  </div>
+                <div className="flex flex-col gap-3">
+  <Button asChild variant="outline">
+    <Link href={auth.login.url}>
+      {auth.login.title}
+    </Link>
+  </Button>
+
+  <Button asChild>
+    <Link href={auth.signup.url}>
+      {auth.signup.title}
+    </Link>
+  </Button>
+</div>
                 </div>
               </SheetContent>
             </Sheet>
