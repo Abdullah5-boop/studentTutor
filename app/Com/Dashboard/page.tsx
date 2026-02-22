@@ -51,7 +51,7 @@ export default function AppSidebar() {
 
       {/* Sidebar Footer */}
       <SidebarFooter>
-        <p className="text-xs text-muted-foreground">© 2026 MyApp</p>
+        <p className="text-xs text-muted-foreground">© 2026 MyApp new app</p>
       </SidebarFooter>
     </Sidebar>
   )
