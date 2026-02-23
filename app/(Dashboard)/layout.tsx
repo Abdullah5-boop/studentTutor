@@ -16,7 +16,7 @@ import {
 
 
 const role={
-  role:"tutor"
+  role:"admin"
 }
 
 export default function DashboardLayout({ children, admin, tutor }: { children: React.ReactNode, admin: React.ReactNode, tutor: React.ReactNode }) {
