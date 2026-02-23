@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AboutPage from "./Com/About/page";
+import AboutPage from "./About/page";
 // import { BugReportForm } from "./Com/Login/page";
 
 export default function Home() {

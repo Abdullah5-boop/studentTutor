@@ -30,7 +30,7 @@ export default function RootLayout({
       >
         <div className="mx-auto ">
 
-        <Navbar1></Navbar1>
+
         </div>
         {children}
       </body>
