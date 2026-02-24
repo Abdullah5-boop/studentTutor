@@ -47,6 +47,7 @@ export default function DashboardLayout({ children, admin, tutor }: { children: 
       {
         role.role === "admin"? admin : tutor
       }
+      {children}
     
     
         </div>
