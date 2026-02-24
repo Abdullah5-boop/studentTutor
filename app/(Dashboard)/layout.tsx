@@ -13,16 +13,40 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { int } from "zod"
 
-
-const role={
-  role:"admin"
+interface dashboardNavList {
+  title: string;
+  url: string;
+  
 }
+const role={
+  role:"tutor"
+}
+const adminNavList:dashboardNavList[] =[
+  {
+    title: "Admin Dashboard 1",
+    url: "#",
+  },
+  {
+    title: "Admin Dashboard 2",
+    url: "#",
+  }
+]  
+const tutorNavList :dashboardNavList[] =[
+  {
+    title: "Tutor form",
+    url: "#"
+  }
+]  
+
+
+const sidebarNavlist = role.role === "admin" ? adminNavList : tutorNavList
 
 export default function DashboardLayout({ children, admin, tutor }: { children: React.ReactNode, admin: React.ReactNode, tutor: React.ReactNode }) {
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar sidebarNavlist={sidebarNavlist}  />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
