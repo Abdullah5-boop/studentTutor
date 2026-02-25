@@ -19,88 +19,95 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
+import DatePickerAndTimeRangePicker from "@/components/ui/TimePicker";
+
 export default function TutorForm() {
   const form = useForm({
     defaultValues: {
-      name: "",
-      email: "",
-      password: "",
+      subject: "",
+      tags: "",
+      from: "",
+      to: "",
     },
     onSubmit: async ({ value }) => {
       console.log("Form submitted with values:", value);
+      alert(JSON.stringify(value, null, 2));
     },
   });
 
   return (
-    <Card className="w-full sm:max-w-md mx-auto mt-10">
+    <Card className=" w-full mt-10">
       <CardHeader>
-        <CardTitle>Sign Up</CardTitle>
+        <CardTitle>Create Tutor</CardTitle>
         <CardDescription>
-          Please enter your details to create an account.
+          Please enter tutor details.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         <form
-          id="signup-form"
+          id="tutor-form"
           onSubmit={(e) => {
             e.preventDefault();
             form.handleSubmit();
           }}
         >
           <FieldGroup>
-            {/* Name */}
-            <form.Field
-              name="name"
-              children={(field) => (
-                <Field>
-                  <FieldLabel htmlFor={field.name}>Name</FieldLabel>
-                  <Input
-                    id={field.name}
-                    value={field.state.value}
-                    onChange={(e) =>
-                      field.handleChange(e.target.value)
-                    }
-                  />
-                </Field>
-              )}
-            />
+            <div className="grid grid-cols-2 gap-4">
+              {/* Subject */}
+              <form.Field name="subject">
+                {(field) => (
+                  <Field>
+                    <FieldLabel htmlFor={field.name}>
+                      Subject
+                    </FieldLabel>
+                    <Input
+                      id={field.name}
+                      value={field.state.value}
+                      onChange={(e) =>
+                        field.handleChange(e.target.value)
+                      }
+                    />
+                  </Field>
+                )}
+              </form.Field>
 
-            {/* Email */}
-            <form.Field
-              name="email"
-              children={(field) => (
-                <Field>
-                  <FieldLabel htmlFor={field.name}>Email</FieldLabel>
-                  <Input
-                    type="email"
-                    id={field.name}
-                    value={field.state.value}
-                    onChange={(e) =>
-                      field.handleChange(e.target.value)
-                    }
-                  />
-                </Field>
-              )}
-            />
+              {/* Tags */}
+              <form.Field name="tags">
+                {(field) => (
+                  <Field>
+                    <FieldLabel htmlFor={field.name}>
+                      Tags
+                    </FieldLabel>
+                    <Input
+                      id={field.name}
+                      value={field.state.value}
+                      onChange={(e) =>
+                        field.handleChange(e.target.value)
+                      }
+                    />
+                  </Field>
+                )}
+              </form.Field>
 
-            {/* Password */}
-            <form.Field
-              name="password"
-              children={(field) => (
-                <Field>
-                  <FieldLabel htmlFor={field.name}>Password</FieldLabel>
-                  <Input
-                    type="password"
-                    id={field.name}
-                    value={field.state.value}
-                    onChange={(e) =>
-                      field.handleChange(e.target.value)
-                    }
-                  />
-                </Field>
-              )}
-            />
+              {/* Time Picker */}
+              <div className="col-span-2">
+                <form.Field name="from">
+                  {(fromField) => (
+                    <form.Field name="to">
+                      {(toField) => (
+                        <DatePickerAndTimeRangePicker
+                          from={fromField.state.value}
+                          to={toField.state.value}
+                          onFromChange={fromField.handleChange}
+                          onToChange={toField.handleChange}
+                        />
+                      )}
+                    </form.Field>
+                  )}
+                </form.Field>
+              </div>
+            </div>
           </FieldGroup>
         </form>
       </CardContent>
@@ -113,7 +120,8 @@ export default function TutorForm() {
         >
           Reset
         </Button>
-        <Button type="submit" form="signup-form">
+
+        <Button type="submit" form="tutor-form">
           Submit
         </Button>
       </CardFooter>
