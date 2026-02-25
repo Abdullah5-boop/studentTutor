@@ -36,7 +36,7 @@ export default function TutorForm() {
   });
 
   return (
-    <Card className=" w-full mt-10">
+    <Card className=" w-1/2 mt-10">
       <CardHeader>
         <CardTitle>Create Tutor</CardTitle>
         <CardDescription>
