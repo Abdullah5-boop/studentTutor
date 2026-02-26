@@ -15,7 +15,7 @@ export default function CardImage({
 }: {
   props: { id: string; name: string; from: string; to: string; tag: string }
 }) {
-console.log("props is undefined", props)
+
   if (!props) {
     
     return <div>Loading...</div>}
