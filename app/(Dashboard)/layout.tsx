@@ -39,7 +39,11 @@ const adminNavList:dashboardNavList[] =[
 ]  
 const tutorNavList :dashboardNavList[] =[
   {
-    title: "Tutor form",
+    title: "Tutor Profile",
+    url: "/Tutor/TutorProfile"
+  },
+  {
+    title:"Tutor form",
     url: "/Tutor/TutorForm"
   }
 ]  

@@ -1,5 +1,7 @@
 import Image from "next/image";
 import img from "../../../../../img/images.png"
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 export default function TutorProfile(...props: any) {
   return (
     <div className="w-full h-screen p-4 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 ">
@@ -40,6 +42,10 @@ export default function TutorProfile(...props: any) {
             </tr>
           </tbody>
         </table>
+        <Button >
+          <Link href='/'>Edit</Link>
+          
+          </Button>
       </div>
     </div>
   )
