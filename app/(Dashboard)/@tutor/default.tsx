@@ -1,3 +1,9 @@
+import TutorProfile from "./Tutor/TutorProfile/TutorProfile";
+
 export default function defaultTutorPage() {
-  return null
+  return (
+    <div>
+      <TutorProfile></TutorProfile>
+    </div>
+  )
 }

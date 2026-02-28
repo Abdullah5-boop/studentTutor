@@ -225,7 +225,7 @@ export function AppSidebar({ sidebarNavlist }: AppSidebarProps) {
           <SidebarGroupContent>
             <SidebarMenu>
               {sidebarNavlist.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.title} className=" border-b border-sidebar-border">
                   <SidebarMenuButton asChild>
                     <a href={item.url}>{item.title}</a>
                   </SidebarMenuButton>

@@ -14,9 +14,9 @@ import {
 } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import  Link  from "next/link";
+import Link from "next/link";
 
-export default function BugReportForm() {
+export default function TutorSignupForm() {
   const form = useForm({
     defaultValues: {
       name: "",
@@ -29,11 +29,11 @@ export default function BugReportForm() {
   });
 
   return (
-    <Card className="w-full sm:max-w-md m-auto mt-10">
+    <Card className="w-full sm:max-w-md mx-auto mt-10">
       <CardHeader>
         <CardTitle className=" text-lg">Sign Up</CardTitle>
         <CardDescription>
-          Please enter your details to create an  account.
+          Please enter your details to create an tutor account.
         </CardDescription>
       </CardHeader>
 
@@ -95,7 +95,7 @@ export default function BugReportForm() {
           </FieldGroup>
         </form>
       </CardContent>
-      <Link href="/TurorSignup" className="text-start px-7 py-2 font-semibold ">sign up as tutor</Link >
+      <Link href="/Signup" className="text-start px-7 py-2 font-semibold ">sign Up as user</Link >
 
       <CardFooter className="flex justify-between">
         <Button type="button" variant="outline" onClick={() => form.reset()}>

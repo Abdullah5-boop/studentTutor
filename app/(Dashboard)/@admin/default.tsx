@@ -1,4 +1,6 @@
 export default function defaultAdminPage() {
-  return    null
+  return    (<div className="p-4">This is the default admin page</div>
+    
+  )
   
 }

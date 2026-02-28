@@ -25,25 +25,40 @@ const role={
 }
 const adminNavList:dashboardNavList[] =[
   {
-    title: "Admin Dashboard 1",
-    url: "#",
+    title: "All Users",
+    url: "/Admin/ViewUsers",
   },
   {
-    title: "Admin Dashboard 2",
-    url: "#",
+    title: "All Bookings",
+    url: "/Admin/VIewAllBooking",
+  },
+  {
+    title: "Manage Categories",
+    url: "/Admin/ManageCategories",
   }
 ]  
 const tutorNavList :dashboardNavList[] =[
   {
     title: "Tutor form",
-    url: "/TutorForm"
+    url: "/Tutor/TutorForm"
+  }
+]  
+const studentNavList :dashboardNavList[] =[
+  {
+    title: "Student Dashboard",
+    url: "/Student"
+  },
+  {
+    title: "Student Dashboard 2",
+    url: "#"
   }
 ]  
 
 
-const sidebarNavlist = role.role === "admin" ? adminNavList : tutorNavList
+const sidebarNavlist = role.role === "admin" ? 
+adminNavList : role.role === "tutor" ? tutorNavList : role.role === "Student" ? studentNavList:[]
 
-export default function DashboardLayout({ children, admin, tutor }: { children: React.ReactNode, admin: React.ReactNode, tutor: React.ReactNode }) {
+export default function DashboardLayout({ children, admin, tutor, student }: { children: React.ReactNode, admin: React.ReactNode, tutor: React.ReactNode, student: React.ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar sidebarNavlist={sidebarNavlist}  />
@@ -69,10 +84,9 @@ export default function DashboardLayout({ children, admin, tutor }: { children: 
         <div className="flex flex-1 flex-col gap-4 p-4">
    
       {
-        role.role === "admin"? admin : tutor
+        role.role === "admin"? admin : role.role === "tutor"? tutor : student
       }
-      {children}
-    
+        
     
         </div>
       </SidebarInset>

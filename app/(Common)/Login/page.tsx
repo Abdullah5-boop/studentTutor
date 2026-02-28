@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
-export default function BugReportForm() {
+export default function LoginForm() {
   const form = useForm({
     defaultValues: {
       name: "",
@@ -32,7 +32,8 @@ export default function BugReportForm() {
   });
 
   return (
-    <Card className="w-full sm:max-w-md mx-auto mt-10">
+    <div className="">
+    <Card className="w-full  sm:max-w-md m-auto mt-36">
       <CardHeader>
         <CardTitle>Login</CardTitle>
         <CardDescription>
@@ -104,5 +105,6 @@ export default function BugReportForm() {
         </Button>
       </CardFooter>
     </Card>
+    </div>
   );
 }
