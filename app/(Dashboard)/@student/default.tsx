@@ -1,7 +1,8 @@
 import React from 'react'
+import StudentProfile from './StudentProfile/StudentProfile'
 
 export default function DefaultStudent() {
   return (
-    <div>...DefaultStudent  </div>
+    <div><StudentProfile></StudentProfile> </div>
   )
 }

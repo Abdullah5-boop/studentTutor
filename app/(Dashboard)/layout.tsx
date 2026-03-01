@@ -53,12 +53,16 @@ const tutorNavList :dashboardNavList[] =[
 ]  
 const studentNavList :dashboardNavList[] =[
   {
+    title: "Student profile",
+    url: "/StudentProfile"
+  },
+  {
     title: "Student Dashboard",
     url: "/Student"
   },
   {
-    title: "Student Dashboard 2",
-    url: "#"
+    title: "Book tutoring",
+    url: "/Bookingsessions"
   }
 ]  
 
