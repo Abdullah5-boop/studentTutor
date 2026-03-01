@@ -43,7 +43,7 @@ export default function TutorProfile(...props: any) {
           </tbody>
         </table>
         <Button >
-          <Link href='/'>Edit</Link>
+         <Link href={`/Tutor/TutorProfile/${1}`}>Edit</Link>
           
           </Button>
       </div>
