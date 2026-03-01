@@ -21,7 +21,7 @@ interface dashboardNavList {
   
 }
 const role={
-  role:"tutor"
+  role:"Student"
 }
 const adminNavList:dashboardNavList[] =[
   {
@@ -45,6 +45,10 @@ const tutorNavList :dashboardNavList[] =[
   {
     title:"Tutor form",
     url: "/Tutor/TutorForm"
+  },
+  {
+    title:"Tutor schedule",
+    url:"/Tutor/TutorSchedule"
   }
 ]  
 const studentNavList :dashboardNavList[] =[
