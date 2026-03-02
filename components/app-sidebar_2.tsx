@@ -15,6 +15,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import Link from "next/link"
+import { Checkbox } from "./ui/checkbox"
 export interface DashboardNavList {
   title: string
   url: string
@@ -24,7 +25,22 @@ interface AppSidebarProps {
   sidebarNavlist: DashboardNavList[]
 }
 
-export function AppSidebar({ sidebarNavlist }: AppSidebarProps) {
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
+
+ function CheckboxBasic({title}:{title:string}) {
+  return (
+    <FieldGroup className="mx-auto w-56">
+      <Field orientation="horizontal">
+        <Checkbox id="terms-checkbox-basic" name="terms-checkbox-basic" />
+        <FieldLabel htmlFor="terms-checkbox-basic">
+          {title}
+        </FieldLabel>
+      </Field>
+    </FieldGroup>
+  )
+}
+
+export function AppSidebarTwo({ sidebarNavlist }: AppSidebarProps) {
   return (
     <Sidebar>
       {/* Optional Header */}
@@ -39,7 +55,8 @@ export function AppSidebar({ sidebarNavlist }: AppSidebarProps) {
               {sidebarNavlist.map((item) => (
                 <SidebarMenuItem key={item.title} className=" border-b border-sidebar-border">
                   <SidebarMenuButton asChild>
-                    <Link href={item.url}>{item.title}</Link>
+                    {/* <Link href={item.url}>fhaaaa{item.title}</Link> */}
+                    <CheckboxBasic title={item.title}></CheckboxBasic>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

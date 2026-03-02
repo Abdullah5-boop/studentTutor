@@ -1,4 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebarTwo } from "@/components/app-sidebar_2"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -36,7 +37,7 @@ export default function CourseLayout({
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
-        <AppSidebar sidebarNavlist={sidebarNavlist} />
+        <AppSidebarTwo sidebarNavlist={sidebarNavlist} />
 
         <SidebarInset className="flex-1">
           <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
