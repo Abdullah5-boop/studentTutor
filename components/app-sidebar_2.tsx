@@ -27,7 +27,7 @@ interface AppSidebarProps {
 
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 
- function CheckboxBasic({title}:{title:string}) {
+function CheckboxBasic({ title }: { title: string }) {
   return (
     <FieldGroup className="mx-auto w-56">
       <Field orientation="horizontal">
@@ -41,9 +41,27 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 }
 
 export function AppSidebarTwo({ sidebarNavlist }: AppSidebarProps) {
+  const [selected, setSelected] = React.useState<{ [key: string]: boolean }>({});
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+
+    setSelected((prev) => ({
+      ...prev,
+      [name]: checked,
+    }));
+  };
+
+  console.log(selected)
+
+  const categories = [
+    { id: "cat-1", label: "Cat 1" },
+    { id: "cat-2", label: "Cat 2" },
+    { id: "cat-3", label: "Cat 3" },
+  ];
+
   return (
     <Sidebar>
-      {/* Optional Header */}
       <SidebarHeader className="px-4 py-2 text-lg font-semibold">
         Dashboard
       </SidebarHeader>
@@ -52,14 +70,29 @@ export function AppSidebarTwo({ sidebarNavlist }: AppSidebarProps) {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {sidebarNavlist.map((item) => (
-                <SidebarMenuItem key={item.title} className=" border-b border-sidebar-border">
-                  <SidebarMenuButton asChild>
-                    {/* <Link href={item.url}>fhaaaa{item.title}</Link> */}
-                    <CheckboxBasic title={item.title}></CheckboxBasic>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              <form>
+                <ul>
+                  {categories.map((item) => (
+                    <li key={item.id}>
+                      <input
+                        type="checkbox"
+                        id={item.id}
+                        name={item.id}
+                        checked={selected[item.id] || false}
+                        onChange={handleChange}
+                      />
+                      <label htmlFor={item.id}>{item.label}</label>
+                    </li>
+                  ))}
+                </ul>
+
+                <p>
+                  Selected:{" "}
+                  {Object.keys(selected)
+                    .filter((key) => selected[key])
+                    .join(", ")}
+                </p>
+              </form>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -67,5 +100,5 @@ export function AppSidebarTwo({ sidebarNavlist }: AppSidebarProps) {
 
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
