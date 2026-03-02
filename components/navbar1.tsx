@@ -163,7 +163,7 @@ const Navbar1 = ({
   return (
     <section className={cn("py-4", className)}>
       {/* container */}
-      <div className=" w-screen px-4"> 
+      <div className=" w-full px-4"> 
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
