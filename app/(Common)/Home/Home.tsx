@@ -3,9 +3,9 @@ import React from "react";
 import img from "@/img/teacher.png";
 export default function HomePage() {
   return (
-    <div className="grid grid-cols-5 h-[65vh] w-full p-5 m-0  ">
-      <section className=" col-span-3 flex justify-center items-start flex-col text-start pl-10">
-        <p className="text-8xl font-bold text-start font-serif">
+    <div className="grid  grid-cols-1 lg:grid-cols-5 h-full  lg:h-[80vh]  w-full p-5 m-0 ">
+      <section className=" col-span-3 flex  items-start flex-col text-start pl-10">
+        <p className="text-2xl md:text-3xl lg:text-7xl font-bold text-start font-serif">
           This website for students and <br /> tutors
         </p>
 

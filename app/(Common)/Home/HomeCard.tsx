@@ -47,27 +47,27 @@ export default function HomeCard() {
     Autoplay({ delay: 5000, stopOnInteraction: true }),
   );
   return (
-    <div className="bg-emerald-500 w-[94vw] p-5 mx-auto">
+    <div className=" w-[94vw] h-full p-5 mx-auto">
       <Carousel
         plugins={[plugin.current]}
       >
         <CarouselContent>
           <CarouselItem>
-            <div className="flex">
+            <div className="flex gap-4">
               <CardSmall></CardSmall>
               <CardSmall></CardSmall>
               <CardSmall></CardSmall>
             </div>
           </CarouselItem>
           <CarouselItem>
-            <div className="flex">
+            <div className="flex gap-4">
               <CardSmall></CardSmall>
               <CardSmall></CardSmall>
               <CardSmall></CardSmall>
             </div>
           </CarouselItem>
           <CarouselItem>
-            <div className="flex">
+            <div className="flex gap-4">
               <CardSmall></CardSmall>
               <CardSmall></CardSmall>
               <CardSmall></CardSmall>
