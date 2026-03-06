@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import { useForm } from "@tanstack/react-form";
-
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import {
   Card,
   CardContent,
@@ -14,17 +15,30 @@ import {
 } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import  Link  from "next/link";
+import Link from "next/link";
+import { authUserService } from "@/service/user.service";
 
 export default function BugReportForm() {
+  const route = useRouter();
   const form = useForm({
     defaultValues: {
       name: "",
       email: "",
       password: "",
+    
     },
     onSubmit: async ({ value }) => {
+      toast.loading("loading...");
       console.log("Form submitted with values:", value);
+      const res = await authUserService.authUserCreate(value);
+      if (res.ok) {
+        toast.success("successfully sign up");
+        route.push("\Login")
+        
+      } else {
+        const result = await res.json()
+        toast.error(`${result.message as string}`);
+      }
     },
   });
 
@@ -33,7 +47,7 @@ export default function BugReportForm() {
       <CardHeader>
         <CardTitle className=" text-lg">Sign Up</CardTitle>
         <CardDescription>
-          Please enter your details to create an  account.
+          Please enter your details to create an account.
         </CardDescription>
       </CardHeader>
 
@@ -95,7 +109,9 @@ export default function BugReportForm() {
           </FieldGroup>
         </form>
       </CardContent>
-      <Link href="/TurorSignup" className="text-start px-7 py-2 font-semibold ">sign up as tutor</Link >
+      <Link href="/TurorSignup" className="text-start px-7 py-2 font-semibold ">
+        sign up as tutor
+      </Link>
 
       <CardFooter className="flex justify-between">
         <Button type="button" variant="outline" onClick={() => form.reset()}>

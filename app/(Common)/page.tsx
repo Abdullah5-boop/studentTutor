@@ -11,12 +11,9 @@ export default function Home() {
     <div className="  ">
       <HomePage></HomePage>
       <div>
-
-      <HomeCard></HomeCard>
+        <HomeCard></HomeCard>
       </div>
-      <div>
-       
-      </div>
+      <div></div>
     </div>
   );
 }

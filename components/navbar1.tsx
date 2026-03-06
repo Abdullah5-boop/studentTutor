@@ -54,7 +54,12 @@ interface Navbar1Props {
       title: string;
       url: string;
     };
+    signout: {
+      title: string;
+      url: string;
+    };
   };
+  signinStatus: string;
 }
 
 const Navbar1 = ({
@@ -65,10 +70,8 @@ const Navbar1 = ({
     title: "Shadcnblocks.com",
   },
   menu = [
-    { title: "About", url: "/About",   
- 
-     },
-    
+    { title: "About", url: "/About" },
+
     {
       title: "Dashboard",
       url: "/dashboard",
@@ -109,7 +112,7 @@ const Navbar1 = ({
   //   {
   //     title: "Products",
   //     url: "#",
-   
+
   //   },
   //   {
   //     title: "Resources",
@@ -151,19 +154,18 @@ const Navbar1 = ({
   //   },
   // ],
 
-
-
-
   auth = {
     login: { title: "Login", url: "/Login" },
     signup: { title: "Sign up", url: "/Signup" },
+    signout: { title: "Sign up", url: "/Signup" },
   },
   className,
+  signinStatus,
 }: Navbar1Props) => {
   return (
     <section className={cn("py-4", className)}>
       {/* container */}
-      <div className=" w-full px-4"> 
+      <div className=" w-full px-4">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
@@ -187,12 +189,23 @@ const Navbar1 = ({
             </div>
           </div>
           <div className="flex gap-2">
-            <Button asChild variant="outline" size="sm">
-              <a href={auth.login.url}>{auth.login.title}</a>
-            </Button>
-            <Button asChild size="sm">
-              <a href={auth.signup.url}>{auth.signup.title}</a>
-            </Button>
+            {
+            signinStatus === "userNotfound" ? (
+              <>
+                <Button asChild variant="outline" size="sm">
+                  <Link href={auth.login.url}>{auth.login.title}</Link>
+                </Button>
+                <Button asChild size="sm">
+                  <Link href={auth.signup.url}>{auth.signup.title}</Link>
+                </Button>
+              </>
+            ) : signinStatus ==='userFound'?
+             (
+              <Button asChild size="sm">
+                <Link href={auth.signout.url}>{auth.signout.title}</Link>
+              </Button>
+            ):""
+          }
           </div>
         </nav>
 
@@ -234,19 +247,15 @@ const Navbar1 = ({
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
 
-                <div className="flex flex-col gap-3">
-  <Button asChild variant="outline">
-    <Link href={auth.login.url}>
-      {auth.login.title}
-    </Link>
-  </Button>
+                  <div className="flex flex-col gap-3">
+                    <Button asChild variant="outline">
+                      <Link href={auth.login.url}>{auth.login.title}</Link>
+                    </Button>
 
-  <Button asChild>
-    <Link href={auth.signup.url}>
-      {auth.signup.title}
-    </Link>
-  </Button>
-</div>
+                    <Button asChild>
+                      <Link href={auth.signup.url}>{auth.signup.title}</Link>
+                    </Button>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>

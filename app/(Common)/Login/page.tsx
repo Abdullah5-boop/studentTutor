@@ -12,99 +12,105 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Field,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { authUserService } from "@/service/user.service";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
+
 
 export default function LoginForm() {
+  const route = useRouter();
   const form = useForm({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
     onSubmit: async ({ value }) => {
       console.log("Form submitted with values:", value);
+     let toastId= toast.loading("Loading...")
+      const res = await authUserService.authUserLogin(value);
+      if (res.ok) {
+        console.log(res)
+        toast.success("successfully Login");
+     
+
+        route.push("/");
+        toast.dismiss(toastId);
+
+      } else {
+        const result = await res.json();
+        toast.error(`${result.message as string}`);
+      }
     },
   });
 
+
+
   return (
     <div className="">
-    <Card className="w-full  sm:max-w-md m-auto mt-36">
-      <CardHeader>
-        <CardTitle>Login</CardTitle>
-        <CardDescription>
-          Please enter your credentials.
-        </CardDescription>
-      </CardHeader>
+      <Card className="w-full  sm:max-w-md m-auto mt-36">
+        <CardHeader>
+          <CardTitle>Login</CardTitle>
+          <CardDescription>Please enter your credentials.</CardDescription>
+        </CardHeader>
 
-      <CardContent>
-        <form
-          id="login-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            form.handleSubmit();
-          }}
-        >
-          <FieldGroup>
-            {/* Name */}
-          
+        <CardContent>
+          <form
+            id="login-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              form.handleSubmit();
+            }}
+          >
+            <FieldGroup>
+              {/* Name */}
 
-            {/* Email */}
-            <form.Field
-              name="email"
-              children={(field) => (
-                <Field>
-                  <FieldLabel htmlFor={field.name}>Email</FieldLabel>
-                  <Input
-                    type="email"
-                    id={field.name}
-                    value={field.state.value}
-                    onChange={(e) =>
-                      field.handleChange(e.target.value)
-                    }
-                  />
-                </Field>
-              )}
-            />
+              {/* Email */}
+              <form.Field
+                name="email"
+                children={(field) => (
+                  <Field>
+                    <FieldLabel htmlFor={field.name}>Email</FieldLabel>
+                    <Input
+                      type="email"
+                      id={field.name}
+                      value={field.state.value}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                    />
+                  </Field>
+                )}
+              />
 
-            {/* Password */}
-            <form.Field
-              name="password"
-              children={(field) => (
-                <Field>
-                  <FieldLabel htmlFor={field.name}>Password</FieldLabel>
-                  <Input
-                    type="password"
-                    id={field.name}
-                    value={field.state.value}
-                    onChange={(e) =>
-                      field.handleChange(e.target.value)
-                    }
-                  />
-                </Field>
-              )}
-            />
-          </FieldGroup>
-        </form>
-      </CardContent>
+              {/* Password */}
+              <form.Field
+                name="password"
+                children={(field) => (
+                  <Field>
+                    <FieldLabel htmlFor={field.name}>Password</FieldLabel>
+                    <Input
+                      type="password"
+                      id={field.name}
+                      value={field.state.value}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                    />
+                  </Field>
+                )}
+              />
+            </FieldGroup>
+          </form>
+        </CardContent>
 
-      <CardFooter className="flex justify-between">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => form.reset()}
-        >
-          Reset
-        </Button>
-        <Button type="submit" form="login-form">
-          Submit
-        </Button>
-      </CardFooter>
-    </Card>
+        <CardFooter className="flex justify-between">
+          <Button type="button" variant="outline" onClick={() => form.reset()}>
+            Reset
+          </Button>
+          <Button type="submit" form="login-form">
+            Submit
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   );
 }

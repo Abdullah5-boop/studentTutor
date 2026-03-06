@@ -1,7 +1,10 @@
 import Image from "next/image";
 import React from "react";
 import img from "@/img/teacher.png";
-export default function HomePage() {
+import { cookies } from "next/headers";
+
+export default async function HomePage() {
+
   return (
     <div className="grid  grid-cols-1 lg:grid-cols-5 h-full  lg:h-[80vh]  w-full p-5 m-0 ">
       <section className=" col-span-3 flex  items-start flex-col text-start pl-10">
