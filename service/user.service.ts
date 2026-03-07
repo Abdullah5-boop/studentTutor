@@ -1,3 +1,5 @@
+
+
 interface userInfo {
   email: string;
   name?: string;
@@ -17,22 +19,7 @@ export const authUserService = {
         body: JSON.stringify(value),
       });
 
-      //   if (!response.ok) {
-      //     // Handle HTTP errors, e.g., status 400, 500
-      //     // throw new Error(`HTTP error! status: ${response.status}`);
-      //     console.log(response);
-      //     const result = await response.json();
-
-      //     return false
-      //   }
-      //   if (response.ok) {
-      //     const result = await response.json();
-
-      //     console.log(result);
-      //     return true
-
-      //   }
-      // return result;
+ 
 
       return response;
     } catch (error) {
@@ -59,4 +46,20 @@ export const authUserService = {
       throw error;
     }
   },
+//   getSession: async()=>{
+//     const cookieStore = await cookies();
+
+//   const res = await fetch("http://localhost:5000/api/auth/get-session", {
+//     headers: {
+//       Cookie: cookieStore.toString(),
+//     },
+//     cache: "no-store",
+//   });
+//   const session = await res.json();
+//   console.log(session);
+
+// return session;
+
+//   }
+
 };

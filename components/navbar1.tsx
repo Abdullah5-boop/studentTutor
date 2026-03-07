@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
 
@@ -26,6 +26,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+
+import { authGetSession } from "@/service/getSession";
+import { authUserService } from "@/service/user.service";
 
 interface MenuItem {
   title: string;
@@ -59,10 +62,10 @@ interface Navbar1Props {
       url: string;
     };
   };
-  signinStatus: string;
+  
 }
 
-const Navbar1 = ({
+const  Navbar1 =  ({
   logo = {
     url: "https://www.shadcnblocks.com",
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
@@ -81,78 +84,6 @@ const Navbar1 = ({
       url: "/Course",
     },
   ],
-  // menu = [
-  //   { title: "Home", url: "#",   items: [
-  //       {
-  //         title: "Blog",
-  //         description: "The latest industry news, updates, and info",
-  //         icon: <Book className="size-5 shrink-0" />,
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Company",
-  //         description: "Our mission is to innovate and empower the world",
-  //         icon: <Trees className="size-5 shrink-0" />,
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Careers",
-  //         description: "Browse job listing and discover our workspace",
-  //         icon: <Sunset className="size-5 shrink-0" />,
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Support",
-  //         description:
-  //           "Get in touch with our support team or visit our community forums",
-  //         icon: <Zap className="size-5 shrink-0" />,
-  //         url: "#",
-  //       },
-  //     ], },
-  //   {
-  //     title: "Products",
-  //     url: "#",
-
-  //   },
-  //   {
-  //     title: "Resources",
-  //     url: "#",
-  //     items: [
-  //       {
-  //         title: "Help Center",
-  //         description: "Get all the answers you need right here",
-  //         icon: <Zap className="size-5 shrink-0" />,
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Contact Us",
-  //         description: "We are here to help you with any questions you have",
-  //         icon: <Sunset className="size-5 shrink-0" />,
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Status",
-  //         description: "Check the current status of our services and APIs",
-  //         icon: <Trees className="size-5 shrink-0" />,
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Terms of Service",
-  //         description: "Our terms and conditions for using our services",
-  //         icon: <Book className="size-5 shrink-0" />,
-  //         url: "#",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: "Pricing",
-  //     url: "#",
-  //   },
-  //   {
-  //     title: "Blog",
-  //     url: "#",
-  //   },
-  // ],
 
   auth = {
     login: { title: "Login", url: "/Login" },
@@ -160,8 +91,19 @@ const Navbar1 = ({
     signout: { title: "Sign up", url: "/Signup" },
   },
   className,
-  signinStatus,
+
 }: Navbar1Props) => {
+
+
+  const session = "await authGetSession.getSession()"
+  let signinAuth = [{ title: "Login", url: "/Login" }, { title: "Signup", url: "/signup" }]
+  let signOutAuth = [{ title: "SignOut", url: "/Login" }]
+
+  const handleClick = ()=>{}
+  // auth = session != null ? signOutAuth : signinAuth;
+
+  console.log("this is auth -> ", session)
+
   return (
     <section className={cn("py-4", className)}>
       {/* container */}
@@ -190,22 +132,23 @@ const Navbar1 = ({
           </div>
           <div className="flex gap-2">
             {
-            signinStatus === "userNotfound" ? (
-              <>
-                <Button asChild variant="outline" size="sm">
-                  <Link href={auth.login.url}>{auth.login.title}</Link>
-                </Button>
+              session === null ? (
+                <>
+                  <Button asChild variant="outline" size="sm">
+                    <Link href='/Login'>Sign in </Link>
+                  </Button>
+
+                  <Button asChild size="sm">
+                    <Link href="/sign up">sign up</Link>
+                  </Button>
+                </>
+              ) : (
                 <Button asChild size="sm">
-                  <Link href={auth.signup.url}>{auth.signup.title}</Link>
+                  <Link href='/'>sign out</Link>
                 </Button>
-              </>
-            ) : signinStatus ==='userFound'?
-             (
-              <Button asChild size="sm">
-                <Link href={auth.signout.url}>{auth.signout.title}</Link>
-              </Button>
-            ):""
-          }
+              )
+            }
+
           </div>
         </nav>
 
