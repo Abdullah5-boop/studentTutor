@@ -1,4 +1,4 @@
-"use client"
+
 
 import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
 
@@ -26,9 +26,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
-import { authGetSession } from "@/service/getSession";
-import { authUserService } from "@/service/user.service";
+import NavbarButton from "@/app/other/NavbarButton";
 
 interface MenuItem {
   title: string;
@@ -62,10 +60,9 @@ interface Navbar1Props {
       url: string;
     };
   };
-  
 }
 
-const  Navbar1 =  ({
+const Navbar1 = ({
   logo = {
     url: "https://www.shadcnblocks.com",
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
@@ -91,18 +88,10 @@ const  Navbar1 =  ({
     signout: { title: "Sign up", url: "/Signup" },
   },
   className,
-
 }: Navbar1Props) => {
 
 
-  const session = "await authGetSession.getSession()"
-  let signinAuth = [{ title: "Login", url: "/Login" }, { title: "Signup", url: "/signup" }]
-  let signOutAuth = [{ title: "SignOut", url: "/Login" }]
 
-  const handleClick = ()=>{}
-  // auth = session != null ? signOutAuth : signinAuth;
-
-  console.log("this is auth -> ", session)
 
   return (
     <section className={cn("py-4", className)}>
@@ -131,24 +120,14 @@ const  Navbar1 =  ({
             </div>
           </div>
           <div className="flex gap-2">
-            {
-              session === null ? (
-                <>
-                  <Button asChild variant="outline" size="sm">
-                    <Link href='/Login'>Sign in </Link>
-                  </Button>
+            {/* <Button asChild variant="outline" size="sm">
+              <Link href="/Login">Sign in </Link>
+            </Button>
 
-                  <Button asChild size="sm">
-                    <Link href="/sign up">sign up</Link>
-                  </Button>
-                </>
-              ) : (
-                <Button asChild size="sm">
-                  <Link href='/'>sign out</Link>
-                </Button>
-              )
-            }
-
+            <Button asChild size="sm">
+              <Link href="/sign up">sign up</Link>
+            </Button> */}
+            <NavbarButton></NavbarButton>
           </div>
         </nav>
 

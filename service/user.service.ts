@@ -1,4 +1,4 @@
-
+import { authGetSession } from "./getSession";
 
 interface userInfo {
   email: string;
@@ -19,24 +19,23 @@ export const authUserService = {
         body: JSON.stringify(value),
       });
 
- 
-
       return response;
     } catch (error) {
       console.error("Error posting data:", error);
       throw error;
     }
   },
+
   authUserLogin: async (value: userInfo) => {
     try {
       let url = "http://localhost:5000/api/auth/sign-in/email";
-      
+
       const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials:'include',
+        credentials: "include",
         body: JSON.stringify(value),
       });
 
@@ -46,20 +45,29 @@ export const authUserService = {
       throw error;
     }
   },
-//   getSession: async()=>{
-//     const cookieStore = await cookies();
 
-//   const res = await fetch("http://localhost:5000/api/auth/get-session", {
-//     headers: {
-//       Cookie: cookieStore.toString(),
-//     },
-//     cache: "no-store",
-//   });
-//   const session = await res.json();
-//   console.log(session);
+  authSignOut: async () => {
+    // let sesson = await authGetSession.getSession()
+    try {
 
-// return session;
+      let result = await fetch("http://localhost:5000/api/auth/sign-out", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-//   }
+      //       (await cookiess).delete("better-auth.session_token")
+      //       if (typeof window === "undefined") {
+      //       try {
+      //         const { cookies } = await import("next/headers");
+      //         const cookieStore = await cookies();
+      // cookieStore.delete("better-auth.session_token")
 
+      return result;
+
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

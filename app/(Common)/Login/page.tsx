@@ -17,11 +17,13 @@ import { Input } from "@/components/ui/input";
 import { authUserService } from "@/service/user.service";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { authGetSession } from "@/service/getSession";
 
 
 
 export default function LoginForm() {
   const route = useRouter();
+
   const form = useForm({
     defaultValues: {
       email: "",
@@ -36,7 +38,10 @@ export default function LoginForm() {
         toast.success("successfully Login");
      
 
-        route.push("/");
+        route.refresh()
+        setTimeout(()=>{route.push("/");})
+         
+        
         toast.dismiss(toastId);
 
       } else {
