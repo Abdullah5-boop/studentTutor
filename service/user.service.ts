@@ -49,23 +49,17 @@ export const authUserService = {
   authSignOut: async () => {
     // let sesson = await authGetSession.getSession()
     try {
-
       let result = await fetch("http://localhost:5000/api/auth/sign-out", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       });
 
-      //       (await cookiess).delete("better-auth.session_token")
-      //       if (typeof window === "undefined") {
-      //       try {
-      //         const { cookies } = await import("next/headers");
-      //         const cookieStore = await cookies();
-      // cookieStore.delete("better-auth.session_token")
 
+      console.log("sign out -> ", result);
       return result;
-
     } catch (error) {
       console.log(error);
     }
