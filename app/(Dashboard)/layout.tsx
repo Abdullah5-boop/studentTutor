@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,74 +6,92 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { int } from "zod"
+} from "@/components/ui/sidebar";
+import { int } from "zod";
 
 interface dashboardNavList {
   title: string;
   url: string;
-  
 }
-const role={
-  role:"Student"
-}
-const adminNavList:dashboardNavList[] =[
+
+const adminNavList: dashboardNavList[] = [
   {
     title: "All Users",
-    url: "/Admin/ViewUsers",
+    url: "/ViewUsers",
   },
   {
     title: "All Bookings",
-    url: "/Admin/VIewAllBooking",
+    url: "/VIewAllBooking",
   },
   {
     title: "Manage Categories",
-    url: "/Admin/ManageCategories",
-  }
-]  
-const tutorNavList :dashboardNavList[] =[
+    url: "/ManageCategories",
+  },
+];
+const tutorNavList: dashboardNavList[] = [
   {
     title: "Tutor Profile",
-    url: "/Tutor/TutorProfile"
+    url: "/Tutor/TutorProfile",
   },
   {
-    title:"Tutor form",
-    url: "/Tutor/TutorForm"
+    title: "Tutor form",
+    url: "/Tutor/TutorForm",
   },
   {
-    title:"Tutor schedule",
-    url:"/Tutor/TutorSchedule"
-  }
-]  
-const studentNavList :dashboardNavList[] =[
+    title: "Tutor schedule",
+    url: "/Tutor/TutorSchedule",
+  },
+];
+const studentNavList: dashboardNavList[] = [
   {
     title: "Student profile",
-    url: "/StudentProfile"
+    url: "/StudentProfile",
   },
   {
     title: "Student Dashboard",
-    url: "/Student"
+    url: "/Student",
   },
   {
     title: "Book tutoring",
-    url: "/Bookingsessions"
-  }
-]  
+    url: "/Bookingsessions",
+  },
+];
+let adminRole = "Admin";
+let studentRole = "Student";
+let tutorRole = "Tutor";
 
+const role = {
+  role: adminRole,
+};
+const sidebarNavlist =
+  role.role === adminRole
+    ? adminNavList
+    : role.role === tutorRole
+      ? tutorNavList
+      : role.role === studentRole
+        ? studentNavList
+        : [];
 
-const sidebarNavlist = role.role === "admin" ? 
-adminNavList : role.role === "tutor" ? tutorNavList : role.role === "Student" ? studentNavList:[]
-
-export default function DashboardLayout({ children, admin, tutor, student }: { children: React.ReactNode, admin: React.ReactNode, tutor: React.ReactNode, student: React.ReactNode }) {
+export default function DashboardLayout({
+  children,
+  admin,
+  tutor,
+  student,
+}: {
+  children: React.ReactNode;
+  admin: React.ReactNode;
+  tutor: React.ReactNode;
+  student: React.ReactNode;
+}) {
   return (
     <SidebarProvider>
-      <AppSidebar sidebarNavlist={sidebarNavlist}  />
+      <AppSidebar sidebarNavlist={sidebarNavlist} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
@@ -93,15 +111,23 @@ export default function DashboardLayout({ children, admin, tutor, student }: { c
             </BreadcrumbList>
           </Breadcrumb>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4">
-   
-      {
-        role.role === "admin"? admin : role.role === "tutor"? tutor : student
-      }
-        
-    
+        <div className="flex flex-1 flex-col gap-4 p-4 text-black">
+          {/* {role.role === admin ?
+            admin
+          : role.role === tutor ? 
+            tutor
+        : role.role === student ? 
+            student
+           : 
+            <h1>Contact developer</h1>
+         }
+            
+         {children} */}
+          {role.role === studentRole && student}
+          {role.role === tutorRole && tutor}
+          {role.role === adminRole && admin}
         </div>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }
