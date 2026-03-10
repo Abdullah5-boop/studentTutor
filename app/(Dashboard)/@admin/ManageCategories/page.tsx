@@ -10,30 +10,25 @@ import {
 } from "@/components/ui/table"
 import { SearchForm } from '@/components/search-form'
 import { Button } from '@/components/ui/button'
+import FormCat from './FormCat'
 export default function ManageCategoriesPage() {
   return (
     <div className='grid grid-cols-1 gap-4'>
         <div className='w-full flex gap-3'>
-            <SearchForm></SearchForm>
-            <Button>Add Category</Button>
+           <FormCat></FormCat>
         </div>
-        <div className='w-full lg:w-2/3'>
+        <div className='w-full lg:w-1/3'>
       <Table>
   <TableCaption>A list of your recent invoices.</TableCaption>
   <TableHeader>
     <TableRow>
-      <TableHead className="w-[100px]">Invoice</TableHead>
-      <TableHead>Status</TableHead>
-      <TableHead>Method</TableHead>
-      <TableHead className="text-right">Amount</TableHead>
+      <TableHead className="w-[100px]">Category list</TableHead>
     </TableRow>
   </TableHeader>
   <TableBody>
     <TableRow>
-      <TableCell className="font-medium">INV001</TableCell>
-      <TableCell>Paid</TableCell>
-      <TableCell>Credit Card</TableCell>
-      <TableCell className="text-right">$250.00</TableCell>
+      <TableCell className="">INV001</TableCell>
+     
     </TableRow>
   </TableBody>
 </Table>
