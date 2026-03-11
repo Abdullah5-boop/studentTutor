@@ -1,5 +1,5 @@
 "use client";
-
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button";
 import { FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,8 @@ import { Field, useForm } from "@tanstack/react-form";
 import React from "react";
 
 export default function FormCat() {
+
+   const router = useRouter()
   const form = useForm({
     defaultValues: {
       catName: "",
@@ -24,11 +26,13 @@ export default function FormCat() {
         },
         body: JSON.stringify(value),
       });
+      router.refresh()
 
       const data = await result.json();
-
+if(data) form.reset()
       console.log(data);
     },
+   
   });
   return (
     <div>
