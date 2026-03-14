@@ -29,16 +29,17 @@ export default function TutorForm() {
       from: "",
       to: "",
     },
-    onSubmit: async ({ value }) => {
+    onSubmit: async  ({ value }) => {
       console.log("Form submitted with values:", value);
-      alert(JSON.stringify(value, null, 2));
+      let result = await fetch("")
+     
     },
   });
 
   return (
     <Card className=" w-1/2 mt-10">
       <CardHeader>
-        <CardTitle>Create Tutor</CardTitle>
+        <CardTitle>Tutor availability </CardTitle>
         <CardDescription>
           Please enter tutor details.
         </CardDescription>

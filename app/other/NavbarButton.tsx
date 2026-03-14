@@ -19,7 +19,7 @@ export default async function NavbarButton() {
             <Link href="/Login">Sign in </Link>
           </Button>
           <Button asChild size="sm">
-            <Link href="/sign up">sign up</Link>
+            <Link href="/Signup">sign up</Link>
           </Button>
         </>
       ) : (

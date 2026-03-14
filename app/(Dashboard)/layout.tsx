@@ -67,7 +67,7 @@ let studentRole = "Student";
 let tutorRole = "Tutor";
 
 const role = {
-  role: adminRole,
+  role: tutorRole,
 };
 const sidebarNavlist =
   role.role === adminRole

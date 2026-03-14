@@ -23,7 +23,7 @@ import { adminService } from "@/service/Admin.service";
 import UserAction from "./UserAction";
 export default async function Viewrpage() {
   let userData = await adminService.getAllUser();
-  console.log("user data from all user page ---> ", userData);
+
 
   return (
     <div className="w-2/3 p-4">
@@ -46,7 +46,7 @@ export default async function Viewrpage() {
                 <TableCell>{data.email}</TableCell>
                 <TableCell>{data.role}</TableCell>
                 <TableCell className="">
-                  <UserAction id={data.id}></UserAction>
+                  <UserAction id={data.id} userData={data.UserStatus}></UserAction>
                 </TableCell>
               </TableRow>
             );
