@@ -1,4 +1,4 @@
-import { authGetSession } from "./getSession";
+
 
 interface userInfo {
   email: string;

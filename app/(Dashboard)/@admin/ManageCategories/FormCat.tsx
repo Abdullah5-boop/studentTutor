@@ -22,7 +22,7 @@ export default function FormCat() {
             "Content-Type": "application/json",
           },
           // This allows Better Auth cookies (HttpOnly) to be sent to your backend
-          credentials: "include", 
+          credentials: "include",
           body: JSON.stringify(value),
         });
 

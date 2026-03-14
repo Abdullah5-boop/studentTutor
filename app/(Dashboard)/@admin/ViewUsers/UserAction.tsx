@@ -23,7 +23,7 @@ export default function UserAction({ id }: { id: string }) {
       headers: {
         "Content-Type": "application/json",
       },
-      // credentials: "include",
+      credentials: "include",
       body: JSON.stringify({
         id: id,
         status: status,
