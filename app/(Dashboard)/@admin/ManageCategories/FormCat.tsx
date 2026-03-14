@@ -1,74 +1,81 @@
 "use client";
-import { useRouter } from "next/navigation"
+
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Field, useForm } from "@tanstack/react-form";
+import { useForm } from "@tanstack/react-form";
 import React from "react";
 
 export default function FormCat() {
+  const router = useRouter();
 
-   const router = useRouter()
   const form = useForm({
     defaultValues: {
       catName: "",
       catdes: "",
     },
     onSubmit: async ({ value }) => {
-      console.log("...", value);
+      try {
+        const result = await fetch("http://localhost:5000/v1/Category", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // This allows Better Auth cookies (HttpOnly) to be sent to your backend
+          credentials: "include", 
+          body: JSON.stringify(value),
+        });
 
-
-
-      let result = await fetch("http://localhost:5000/v1/Category", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(value),
-      });
-      router.refresh()
-
-      const data = await result.json();
-if(data) form.reset()
-      console.log(data);
+        if (result.ok) {
+          form.reset();
+          router.refresh();
+          const data = await result.json();
+          console.log("Success:", data);
+        } else {
+          console.error("Submission failed with status:", result.status);
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
     },
-   
   });
+
   return (
-    <div>
+    <div className="p-4">
       <form
-        id="cat-form"
         onSubmit={(e) => {
           e.preventDefault();
+          e.stopPropagation();
           form.handleSubmit();
         }}
+        className="space-y-4"
       >
         <form.Field
           name="catName"
           children={(field) => (
             <Input
-              type="text"
-              id={field.name}
+              name={field.name}
               value={field.state.value}
-              placeholder="category name"
+              placeholder="Category Name"
+              onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
-            ></Input>
+            />
           )}
-        ></form.Field>
+        />
         <form.Field
           name="catdes"
           children={(field) => (
             <Input
-              type="text"
-              id={field.name}
-              placeholder="category description... "
+              name={field.name}
               value={field.state.value}
+              placeholder="Category Description..."
+              onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
-            ></Input>
+            />
           )}
-        ></form.Field>
-        <Button type="submit" form="cat-form">
-          Add category
+        />
+        <Button type="submit">
+          Add Category
         </Button>
       </form>
     </div>

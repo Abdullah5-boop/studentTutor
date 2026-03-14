@@ -25,6 +25,7 @@ export default function BugReportForm() {
       name: "",
       email: "",
       password: "",
+      UserStatus:true
     
     },
     onSubmit: async ({ value }) => {
