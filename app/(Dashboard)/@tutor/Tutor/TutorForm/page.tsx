@@ -18,21 +18,48 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { toast, Toaster } from "sonner";
 
 import DatePickerAndTimeRangePicker from "@/components/ui/TimePicker";
 
 export default function TutorForm() {
   const form = useForm({
     defaultValues: {
+      tutorId: "1",
       subject: "",
       tags: "",
       from: "",
       to: "",
+      isBooked: false
     },
-    onSubmit: async  ({ value }) => {
+    onSubmit: async ({ value }) => {
+      let Newvalue = { ...value, tags: value.tags.split(",") }
+      console.log("new Value => ", Newvalue)
       console.log("Form submitted with values:", value);
-      let result = await fetch("")
-     
+      let result = await fetch("http://localhost:5000/v1/TutorAvailabilitySlot/1", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify(Newvalue)
+      });
+
+      const data = await result.json();
+      if (data) {
+        toast.success("Data saved successfully!", {
+          duration: 5000, // 5 seconds
+        });
+        form.reset()
+
+      }
+      else {
+        toast.error("Data not saved ", {
+          duration: 5000, // 5 seconds
+        });
+      }
+      console.log(data);
+
     },
   });
 
@@ -126,6 +153,7 @@ export default function TutorForm() {
           Submit
         </Button>
       </CardFooter>
+      <Toaster></Toaster>
     </Card>
   );
 }
